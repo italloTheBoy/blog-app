@@ -1,0 +1,24 @@
+<header class="navbar">
+  <h1 class="nav-item">Nova categoria</h1>
+  <a href="/category" role="button" class="btn btn-primary nav-item">Voltar</a>
+</header>
+<hr>
+
+<form action="/category/add/post" method="post">
+  <fieldset>
+    <label for="name" class="form-label">Nome</label>
+      <input type="text" name="name" class="form-control" placeholder="Nome da categoria" required>
+
+    <label for="slug" class="form-label mt-3">Slug</label>
+      <input type="text" name="slug" class="form-control" placeholder="Slug da categoria" required>
+      <p class="form-text mb-4">As pavras devem ser separadas por "-" e não devem haver letras maiusculas.</p>
+    
+    {{#each err}}
+      <p class="alert alert-danger">{{msg}}</p>
+    {{/each}}
+    
+    <hr>
+    <button type="submit" class="btn btn-success mt-1">Criar</button>
+  </fieldset>
+  
+</form>
