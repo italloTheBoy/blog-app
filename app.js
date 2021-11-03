@@ -1,7 +1,11 @@
+// Loads
 const path = require('path')
 const mongoose = require('mongoose')
 const express = require('express')
 const handlebars = require('express-handlebars')
+const session = require('express-session')
+const flash = require('connect-flash')
+
 
 // Configuration
   // Express
@@ -19,14 +23,32 @@ const handlebars = require('express-handlebars')
 
   // Mongoose
   mongoose.connect('mongodb://localhost/blog')
+
+  // Session
+  app.use(session({
+    secret: 'secret',
+    resave: false,
+    saveUninitialized: true,
+  }))
+
+  // Flash
+  app.use(flash())
+
+  app.use((req, res, next) => {
+    res.locals.sus = req.flash('sus')
+    res.locals.err = req.flash('err')
+
+    next()
+  })
   
   
-  
+// Routes
 const routes = require('./src/routes')
 app.use(routes)
   
 
-const PORT = 38456
+// Listen
+const PORT = 3000
 app.listen(PORT, () => {
   console.log(`Server running in http://localhost:${PORT}`)
 })

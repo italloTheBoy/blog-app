@@ -9,34 +9,44 @@ routes.get('/add', (req, res) => {
 })
 
 routes.post('/add/post', (req, res) => {
+  const name = req.body.name.trim().toLowerCase()
+  const slug = req.body.slug.trim().toLowerCase()
+
   let err = []
 
-  if (!req.body.name) {
+  if (!name || name.length == 0) {
     err.push({msg: 'Insira um nome'})
-  }else if (!Category.findOne({name: req.body.name}) == true ) {
-    err.push({msg: 'Este nome ja existe'})
+  }else {
+    Category.findOne({name: name}).then(category => {
+      if (category) {
+        err.push({msg: 'Este nome ja existe.'}) 
+      }
+    })
   }
 
-  if (!req.body.slug) {
+  if (!slug || slug.length == 0) {
     err.push({msg: 'Insira uma slug'})
-  }else if (req.body.slug.indexOf(' ') != -1 || req.body.slug.toLowerCase() != req.body.slug) {
-    err.push({msg: 'Insira uma slug valida'})
-  }else if (!Category.findOne({slug: req.body.slug}) == true ) {
-    err.push({msg: 'Esta slug ja existe'})
+  }else if (slug.indexOf(' ') != -1) {
+    err.push({msg: 'Slug Invalida'})
+  }else {
+    Category.findOne({slug: slug}).then(category => {
+      if (category) {
+        err.push({msg: 'Esta slug ja existe.'}) 
+      }
+    })
   }
-
-
+  
   if (err.length != 0) {
     res.render('category/add', {err: err})
   }else {
     new Category({
-      name: req.body.name,
-      slug: req.body.slug,
+      name: name,
+      slug: slug,
     }).save()
-
-    res.redirect('/category')
+      .then(() => {
+        res.redirect('/category/')
+      })
   }
 })
-
 
 module.exports = routes
