@@ -27,7 +27,7 @@ const flash = require('connect-flash')
   // Session
   app.use(session({
     secret: 'secret',
-    resave: false,
+    resave: true,
     saveUninitialized: true,
   }))
 
@@ -35,9 +35,9 @@ const flash = require('connect-flash')
   app.use(flash())
 
   app.use((req, res, next) => {
-    res.locals.sus = req.flash('sus')
-    res.locals.err = req.flash('err')
-
+    res.locals.susMsg = req.flash('susMsg')
+    res.locals.errMsg = req.flash('errMsg')
+    
     next()
   })
   
@@ -48,7 +48,7 @@ app.use(routes)
   
 
 // Listen
-const PORT = 3000
+const PORT = 3050
 app.listen(PORT, () => {
   console.log(`Server running in http://localhost:${PORT}`)
 })

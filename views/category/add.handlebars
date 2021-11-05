@@ -7,10 +7,10 @@
 <form action="/category/add/post" method="post">
   <fieldset>
     <label for="name" class="form-label">Nome</label>
-      <input type="text" name="name" class="form-control" placeholder="Nome da categoria" required>
+      <input type="text" name="name" class="form-control" placeholder="Nome da categoria" >
 
     <label for="slug" class="form-label mt-3">Slug</label>
-      <input type="text" name="slug" class="form-control" placeholder="Slug da categoria" required>
+      <input type="text" name="slug" class="form-control" placeholder="Slug da categoria" >
       <p class="form-text mb-4">As palavras devem ser separadas por "-" </p>
     
     {{#each err}}

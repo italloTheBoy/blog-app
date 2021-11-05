@@ -3,7 +3,7 @@ const routes = Router()
 
 
 routes.get('/', (req, res) => {
-  res.res('oi')
+  res.send('oi')
 })
 
 const category = require('./category/push')

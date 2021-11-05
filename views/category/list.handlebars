@@ -3,3 +3,33 @@
   <a href="/category/add" role="button" class="btn btn-primary nav-item">Criar categoria</a>
 </header>
 <hr>
+
+{{#each category}}
+  <section class="card mt-4">
+    <div class="card-body">
+      <h2 class="text-capitalize">{{name}}</h2>
+      <small>{{slug}}</small>
+
+      <hr>
+
+      <section class="d-flex">
+        <form action="/category/edit" method="post" class="me-2">
+          <input type="hidden" name="id" value="{{_id}}">
+          <button class="btn btn-success" type="submit">Editar</button>
+        </form>
+
+        <form action="/category/del" method="post">
+          <input type="hidden" name="id" value="{{_id}}">
+          <button class="btn btn-danger" type="submit">Deletar</button>
+        </form>
+      </section>
+    </div>
+  </section>
+{{else}}
+  <section class="card mt-4">
+    <div class="card-body">
+      <h2>Ops...</h2>
+      <small>Nenhuma categoria foi encontrada</small>
+    </div> 
+  </section>
+{{/each}}
