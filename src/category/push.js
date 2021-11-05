@@ -11,8 +11,8 @@ routes.use(add)
 const del = require('./del')
 routes.use(del)
 
-// const edit = require('./edit')
-// routes.use(edit)
+const edit = require('./edit')
+routes.use(edit)
 
 
 module.exports = routes

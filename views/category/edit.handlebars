@@ -1,16 +1,16 @@
 <header class="navbar">
-  <h1 class="nav-item">Nova Categoria</h1>
+  <h1 class="nav-item">Editar Categoria</h1>
   <a href="/category" role="button" class="btn btn-primary nav-item">Voltar</a>
 </header>
 <hr>
 
-<form action="/category/add/post" method="post">
+<form action="/category/edit/post" method="post">
   <fieldset>
     <label for="name" class="form-label">Nome</label>
-      <input type="text" name="name" class="form-control" placeholder="Nome da categoria" required>
+      <input type="text" name="name" class="form-control" placeholder="Nome da categoria" value="{{category.name}}" required>
 
     <label for="slug" class="form-label mt-3">Slug</label>
-      <input type="text" name="slug" class="form-control" placeholder="Slug da categoria" required>
+      <input type="text" name="slug" class="form-control" placeholder="Slug da categoria" value="{{category.slug}}" required>
       <p class="form-text mb-4">As palavras devem ser separadas por "-" </p>
     
     {{#each err}}
@@ -18,6 +18,6 @@
     {{/each}}
     
     <hr>
-    <button type="submit" class="btn btn-success mt-1">Criar</button>
+    <button type="submit" class="btn btn-success mt-1">Editar</button>
   </fieldset>
 </form>

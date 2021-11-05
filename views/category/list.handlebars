@@ -13,10 +13,7 @@
       <hr>
 
       <section class="d-flex">
-        <form action="/category/edit" method="post" class="me-2">
-          <input type="hidden" name="id" value="{{_id}}">
-          <button class="btn btn-success" type="submit">Editar</button>
-        </form>
+        <a href="/category/edit/{{_id}}" role="button" class="btn btn-success me-2">Editar</a>
 
         <form action="/category/del" method="post">
           <input type="hidden" name="id" value="{{_id}}">
