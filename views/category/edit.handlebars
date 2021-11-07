@@ -6,6 +6,8 @@
 
 <form action="/category/edit/post" method="post">
   <fieldset>
+    <input type="hidden" name="id" value="{{category._id}}">
+
     <label for="name" class="form-label">Nome</label>
       <input type="text" name="name" class="form-control" placeholder="Nome da categoria" value="{{category.name}}" required>
 
