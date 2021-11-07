@@ -9,4 +9,7 @@ routes.get('/', (req, res) => {
 const category = require('./category/push')
 routes.use('/category', category)
 
+const post = require('./post/push')
+routes.use('/post', post)
+
 module.exports = routes

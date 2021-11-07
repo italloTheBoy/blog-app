@@ -1,16 +1,18 @@
 <header class="navbar">
-  <h1 class="nav-item">Categorias</h1>
-  <a href="/category/add" role="button" class="btn btn-primary nav-item">Criar categoria</a>
+  <h1 class="nav-item">Postagens</h1>
+  <a href="/post/add" role="button" class="btn btn-primary nav-item">fazer postagem</a>
 </header>
 <hr>
 
-{{#each category}}
+{{#each post}}
   <section class="card mt-4">
     <div class="card-body">
-      <h2 class="text-capitalize card-title">{{name}}</h2>
-      <p class="card-subtitle">{{slug}}</p>
-
-      <hr>
+      <header>
+        <h2 class="card-title text-capitalize">{{title}}</h2>
+        <p class="card-subtitle text-muted">{{slug}}</p>
+        <hr>
+        <p class="card-title mb-3">{{description}}</p>
+      </header>
 
       <section class="d-flex">
         <a href="/category/edit/{{_id}}" role="button" class="btn btn-success me-2">Editar</a>
@@ -26,7 +28,7 @@
   <section class="card mt-4">
     <div class="card-body">
       <h2>Ops...</h2>
-      <small>Nenhuma categoria foi encontrada</small>
+      <small>Nenhuma postagem foi encontrada</small>
     </div> 
   </section>
 {{/each}}

@@ -1,0 +1,38 @@
+<header class="navbar">
+  <h1 class="nav-item">Nova Postagem</h1>
+  <a href="/post" role="button" class="btn btn-primary nav-item">Voltar</a>
+</header>
+<hr>
+
+<form action="/post/add/post" method="post">
+  <fieldset>
+    <label for="title" class="form-label">Titulo</label>
+      <input type="text" name="title" class="form-control" placeholder="Titulo da postagem" required>
+
+    <label for="slug" class="form-label mt-3">Slug</label>
+      <input type="text" name="slug" class="form-control" placeholder="Slug da postagem" required>
+      <p class="form-text">As palavras devem ser separadas por "-" </p>
+    
+    <label for="description" class="form-label">Descrição</label>
+      <input type="text" name="description" class="form-control" placeholder="Descrição da postagem" required>
+
+    <label for="content" class="form-label mt-3">Conteudo</label>
+      <textarea name="content" class="form-control" placeholder="Conteudo da Postagem" required></textarea>
+
+    <label for="category" class="form-label mt-3">Categoria</label>
+      <select name="category" class="form-select mb-4" placeholder="Selecione uma categoria" required>
+        {{#each category}}
+          <option value="{{_id}}">{{name}}</option>
+        {{else}}
+          <option value="0">Nenhuma categoria foi encontrada</option>
+        {{/each}}
+      </select>
+    
+    {{#each err}}
+      <p class="alert alert-danger">{{msg}}</p>
+    {{/each}}
+    
+    <hr>
+    <button type="submit" class="btn btn-success mt-1">Criar</button>
+  </fieldset>
+</form>
