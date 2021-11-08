@@ -15,12 +15,15 @@
       </header>
 
       <section class="d-flex">
-        <a href="/category/edit/{{_id}}" role="button" class="btn btn-success me-2">Editar</a>
+        {{!-- Edit btn --}}
+        <a href="/post/edit/{{_id}}" role="button" class="btn btn-success me-2">Editar</a>
 
-        <form action="/category/del" method="post">
+        {{!-- Del btn --}}
+        <form action="/post/del" method="post">
           <input type="hidden" name="id" value="{{_id}}">
           <button class="btn btn-danger" type="submit">Deletar</button>
         </form>
+
       </section>
     </div>
   </section>

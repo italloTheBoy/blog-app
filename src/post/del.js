@@ -1,7 +1,7 @@
 const { Router } = require('express')
 const routes = Router()
 
-const Category = require('../../models/Category') 
+const Post = require('../../models/Post') 
 
 
 routes.post('/del', async (req, res) => {
@@ -10,25 +10,23 @@ routes.post('/del', async (req, res) => {
   try {
     if (id.length != 24) {
       throw new Error('Id invalido')
-    } 
+    }
+
+    const post = await Post.findById(id)
     
-    const category = await Category.findById(id)
-    
-    if (!category) {
+    if (!post) {
       throw new Error('Id invalido')
     } 
     
-    await category.remove()
+    await post.remove()
 
-    req.flash('susMsg', 'Categoria deletada')
-    res.redirect('/category')
+    req.flash('susMsg', 'Postagem deletada')
+    res.redirect('/post')
   }
   catch (err) {
     req.flash('errMsg', 'Ocorreu um erro. Tente nomamente mais tarde')
-    res.redirect('/category')
+    res.redirect('/post')
   }
-  
-
 })
 
 
