@@ -1,0 +1,45 @@
+<header class="navbar">
+  <h1 class="nav-item">Editar Postagem</h1>
+  <a href="/post" role="button" class="btn btn-primary nav-item">Voltar</a>
+</header>
+<hr>
+
+<form action="/post/edit/post" method="post">
+  <fieldset>
+    <input type="hidden" name="id" value="{{post._id}}">
+
+    <label for="title" class="form-label">Titulo</label>
+      <input type="text" name="title" class="form-control" placeholder="Titulo da postagem" value="{{post.title}}" required>
+
+    <label for="slug" class="form-label mt-3">Slug</label>
+      <input type="text" name="slug" class="form-control" placeholder="Slug da postagem" value="{{post.slug}}" required>
+      <p class="form-text">As palavras devem ser separadas por "-" </p>
+    
+    <label for="description" class="form-label">Descrição</label>
+      <input type="text" name="description" class="form-control" placeholder="Descrição da postagem" value="{{post.description}}" required>
+
+    <label for="content" class="form-label mt-3">Conteudo</label>
+      <textarea name="content" class="form-control" placeholder="Conteudo da Postagem" required>{{post.content}}</textarea>
+
+    <label for="category" class="form-label mt-3">Categoria</label>
+      <select name="category" class="form-select mb-4" placeholder="Selecione uma categoria" required>
+
+        <option value="{{post.category._id}}">{{post.category.name}}</option>
+
+        {{#each category}}
+          <option value="{{_id}}">{{name}}</option>
+
+        {{else}}
+          <option value="0">Nenhuma outra categoria foi encontrada</option>
+          
+        {{/each}}
+      </select>
+    
+    {{#each err}}
+      <p class="alert alert-danger">{{msg}}</p>
+    {{/each}}
+    
+    <hr>
+    <button type="submit" class="btn btn-success mt-1">Editar</button>
+  </fieldset>
+</form>
