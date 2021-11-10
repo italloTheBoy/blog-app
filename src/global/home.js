@@ -5,13 +5,13 @@ const Post = require('../../models/Post')
 
 
 routes.get('/', async (req, res) => {
-  try {
+  try{
     const post = await Post.find().sort({ date: 'desc' }).lean()
-    res.render('post/list', { post: post })
+
+    res.render('global/home', { post: post })
   }
   catch (err) {
-    req.flash('errMsg', 'Não foi possivel encontrar as postagens, tente mais tarde.')
-    res.render('post/list')
+    res.status(404).redirect('/404')
   }
 })
 

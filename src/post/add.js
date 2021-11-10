@@ -8,9 +8,10 @@ const Post = require('../../models/Post')
 routes.get('/add', async (req, res) => {
   try {
     const category = await Category.find().sort({ date: 'desc' }).lean()
-
     res.render('post/add', { category: category })
-  } catch (err) {
+  } 
+  catch (err) {
+    console.log('err')
     res.redirect('/404')
   }
 })
@@ -38,6 +39,19 @@ routes.post('/add/post', async (req, res) => {
   }
   else if (slug.indexOf(' ') != -1) {
     err.push({msg: 'Slug invalida'})
+  } 
+  else {
+    try {
+      const slugVal = await Post.findOne({ slug: slug }) 
+
+      if (slugVal) {
+        err.push({ msg: 'Slug ja exite' })
+      }
+    }
+    catch (err) {
+      req.flash('errMsg', 'Ocorreu um erro interno, tente novamente mais tarde')
+      res.redirect('/post/add')
+    }
   }
 
   if (!description || description === '') {

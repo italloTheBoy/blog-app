@@ -63,6 +63,19 @@ routes.post('/edit/post', async (req, res) => {
   else if (slug.indexOf(' ') != -1) {
     err.push({msg: 'Slug invalida'})
   }
+  else {
+    try {
+      const slugVal = await Post.findOne({ slug: slug })
+
+      if (slugVal == null || slugVal == undefined) {
+        err.push({ msg: 'Esta slug ja existe' })
+      }
+    }
+    catch (err) {
+      req.flash('errMsg', 'Ocorreu um erro interno, tente novamente mais tarde')
+      res.redirect('/post/edit')
+    }
+  }
 
   if (!description || description === '') {
     err.push({ msg: 'Insira uma descrição' })

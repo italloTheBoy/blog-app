@@ -5,10 +5,13 @@
 <hr>
 
 {{#each post}}
+  {{!-- Listagem --}}
   <section class="card mt-4">
     <div class="card-body">
       <header>
-        <h2 class="card-title text-capitalize">{{title}}</h2>
+        <a href="/post/see/{{slug}}" class="link-dark title">
+          <h2 class="card-title text-capitalize">{{title}}</h2>
+        </a>
         <p class="card-subtitle text-muted">{{slug}}</p>
         <hr>
         <p class="card-title mb-3">{{description}}</p>

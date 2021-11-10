@@ -5,6 +5,9 @@ const routes = Router()
 const list = require('./list')
 routes.use(list)
 
+const see = require('./see')
+routes.use(see)
+
 const add = require('./add')
 routes.use(add)
 

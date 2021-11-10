@@ -1,0 +1,19 @@
+<article>
+  {{!-- header --}}
+  <header class="navbar">
+    <h1 class="nav-item text-capitalize">{{post.title}}</h1>
+  </header>
+  <hr>
+  
+  {{!-- main --}}
+  <main class="card">
+    <div class="container card-body">
+      <p class="justify">{{post.content}}</p>
+    </div>
+  </main>
+  
+  {{!-- footer --}}
+  <footer class="text-end">
+    <small class="text-muted">Slug: {{post.slug}}  |  Category: {{post.category.slug}}</small>
+  </footer>
+</article>
