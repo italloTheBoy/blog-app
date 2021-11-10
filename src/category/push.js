@@ -14,5 +14,8 @@ routes.use(del)
 const edit = require('./edit')
 routes.use(edit)
 
+const link = require('./link')
+routes.use(link)
+
 
 module.exports = routes

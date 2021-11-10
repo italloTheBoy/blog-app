@@ -1,0 +1,19 @@
+<article class="card">
+  <div class="card-body">
+
+    <header class="navbar">
+      <h1 class="nav-item text-capitalize">Lista de categorias</h1>
+    </header>
+    <hr>
+
+    <main>
+        <ul>
+          {{#each category}}
+          <li class="mb-2"><a href="/category/link/{{slug}}">{{name}}</a></li>
+          {{else}}
+          <li>Opa... Nenhuma categoia foi encontrada.</li>
+          {{/each}}
+        </ul>
+    </main>
+  </div>
+</article>
