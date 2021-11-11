@@ -18,17 +18,19 @@ routes.get('/link', async ( req, res ) => {
   }
 })
 
-routes.get('/link/:slug', async ( req, res ) => {
-  try {
-    const category = Category.findOne({ slug: req.params.slug })
+routes.get('/linked/:slug', async ( req, res ) => {
+  const slug = req.params.slug
 
-    if ( !category ) {
+  try {
+    const category = await Category.findOne({ slug: slug }).lean()
+
+    if (!category) {
       res.status(404).redirect('/404')
     }
     else {
-      const post = Post.find({ category: category.id }) 
-  
-      res.status(200).render('category/linked', { post:post })
+      const post = await Post.find({ category: category }).lean().sort({ date: 'desc' })
+
+      res.status(200).render('category/linked', { post: post, category: category })
     }
 
   } catch ( err ) {
