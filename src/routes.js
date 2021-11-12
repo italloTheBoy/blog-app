@@ -11,4 +11,7 @@ routes.use('/category', category)
 const post = require('./post/push')
 routes.use('/post', post)
 
+const user = require('./user/push')
+routes.use('/user', user)
+
 module.exports = routes
