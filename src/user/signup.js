@@ -3,6 +3,8 @@ const routes = Router()
 
 const User = require('../../models/User')
 
+const bcrypt = require('bcrypt')
+
 
 routes.get('/signup', (req, res) => {
   res.render('user/signup')
@@ -55,9 +57,13 @@ routes.post('/signup/post', async (req, res) => {
     return res.status(401).render('user/signup', { err: err })
   }
 
+  // Gen hash
+  const salt = await bcrypt.genSalt(12)
+  const hash = await bcrypt.hash(password, salt) 
+
   // 200
   try {
-    await new User({ name, email, password }).save()
+    await new User({ name, email, password: hash }).save()
     
     req.flash('susMsg', 'Usuario criado')
     return res.status(200).redirect('/login')
