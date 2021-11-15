@@ -83,8 +83,8 @@ routes.post('/add/post', async (req, res) => {
   }
 
   // Redirect
-  if (err.length > 0) {
-    res.render('post/add', {err: err})
+  if (err.length != 0) {
+    res.render('post/add', { err: err })
   }
   else {
     try {

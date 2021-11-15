@@ -4,7 +4,7 @@
     <p class="lead">Esse projeto é um mini blog que fiz durante meu aprendizado de nodeJs.</p>
     <hr class="my-4">
     <p>Se esta interesado por esse projeto recomendo começar criando uma conta.</p>
-    <a class="btn btn-primary btn-lg" href="#" role="button">Criar conta</a>
+    <a class="btn btn-primary btn-lg" href="/signup" role="button">Criar conta</a>
   </div>
 </header>
 
@@ -21,18 +21,6 @@
           <hr>
           <p class="card-title mb-3">{{description}}</p>
         </header>
-  
-        <section class="d-flex">
-          {{!-- Edit btn --}}
-          <a href="/post/edit/{{_id}}" role="button" class="btn btn-success me-2">Editar</a>
-  
-          {{!-- Del btn --}}
-          <form action="/post/del" method="post">
-            <input type="hidden" name="id" value="{{_id}}">
-            <button class="btn btn-danger" type="submit">Deletar</button>
-          </form>
-  
-        </section>
       </div>
     </section>
   {{else}}

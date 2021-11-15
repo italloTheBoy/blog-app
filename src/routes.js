@@ -12,6 +12,6 @@ const post = require('./post/push')
 routes.use('/post', post)
 
 const user = require('./user/push')
-routes.use('/user', user)
+routes.use(user)
 
 module.exports = routes

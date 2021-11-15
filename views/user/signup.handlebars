@@ -4,19 +4,20 @@
 </header>
 <hr>
 
-<form action="/user/signup/post" method="post">
+<form action="/signup/post" method="post">
   <fieldset>
     <label for="name" class="form-label">Nome</label>
       <input type="text" name="name" class="form-control" placeholder="Insira seu nome" required>
 
     <label for="email" class="form-label mt-3">Email</label>
-      <input type="text" name="email" class="form-control" placeholder="Insira seu email" required>
+      <input type="email" name="email" class="form-control" placeholder="Insira seu email" required>
 
     <label for="password" class="form-label mt-3">Senha</label>
-      <input type="text" name="password" class="form-control" placeholder="Insira sua senha" min="6" required>
+      <input type="password" name="password" class="form-control" placeholder="Insira sua senha" min="6" required>
+      <p class="form-text">Minimo de 6 letras</p>
 
-    <label for="confirm" class="form-label mt-3">Confirme sua senha</label>
-      <input type="text" name="confirm" class="form-control mb-4" placeholder="Confirme sua senha" min="6" required>
+    <label for="confirm" class="form-label">Confirme sua senha</label>
+      <input type="password" name="confirm" class="form-control mb-4" placeholder="Confirme sua senha" min="6" required>
     
     {{#each err}}
       <p class="alert alert-danger">{{msg}}</p>
