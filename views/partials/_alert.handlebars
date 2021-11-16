@@ -1,8 +1,11 @@
-{{#if errMsg}}
-  <p class="alert alert-danger">{{errMsg}}</p>
-{{/if}}
-
 {{#if susMsg}}
   <p class="alert alert-success">{{susMsg}}</p>
 {{/if}}
   
+{{#if errMsg}}
+  <p class="alert alert-danger">{{errMsg}}</p>
+{{/if}}
+
+{{#if error}}
+  <p class="alert alert-danger">{{error}}</p>
+{{/if}}

@@ -4,6 +4,8 @@ const mongoose = require('mongoose')
 const express = require('express')
 const handlebars = require('express-handlebars')
 const session = require('express-session')
+const passport = require('passport')
+require('./config/auth')(passport)
 const flash = require('connect-flash')
 
 
@@ -31,12 +33,17 @@ const flash = require('connect-flash')
     saveUninitialized: true,
   }))
 
+  // Passport
+  app.use(passport.initialize())
+  app.use(passport.session())
+
   // Flash
   app.use(flash())
 
   app.use((req, res, next) => {
     res.locals.susMsg = req.flash('susMsg')
     res.locals.errMsg = req.flash('errMsg')
+    res.locals.error  = req.flash('error')
     
     next()
   })
@@ -48,7 +55,7 @@ app.use(routes)
   
 
 // Listen
-const PORT = 3625
+const PORT = 3000
 app.listen(PORT, () => {
   console.log(`Server running in http://localhost:${PORT}`)
 })

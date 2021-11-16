@@ -1,0 +1,24 @@
+<header class="navbar">
+  <h1 class="nav-item">Entrar</h1>
+  <a href="/" role="button" class="btn btn-primary nav-item">Voltar</a>
+</header>
+<hr>
+
+<form action="/login" method="post">
+  <fieldset>
+
+    <label for="email" class="form-label">Email</label>
+      <input type="email" name="email" class="form-control" placeholder="Insira seu email" required>
+    
+    <label for="password" class="form-label mt-3">Senha</label>
+      <input type="password" name="password" class="form-control" placeholder="Insira sua senha" min="6" required>
+    
+    {{#each err}}
+      <p class="alert alert-danger">{{msg}}</p>
+    {{/each}}
+    
+    <hr>
+    <button type="submit" class="btn btn-success mt-1">Criar</button>
+    
+  </fieldset>
+</form>
