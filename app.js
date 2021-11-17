@@ -1,12 +1,15 @@
 // Loads
+require('dotenv').config()
 const path = require('path')
 const mongoose = require('mongoose')
+const { mongoURI } = require('./config/db')
 const express = require('express')
 const handlebars = require('express-handlebars')
 const session = require('express-session')
 const passport = require('passport')
 require('./config/auth')(passport)
 const flash = require('connect-flash')
+
 
 
 // Configuration
@@ -24,7 +27,7 @@ const flash = require('connect-flash')
   app.use(express.static(path.join(__dirname, 'public')))
 
   // Mongoose
-  mongoose.connect('mongodb://localhost/blog')
+  mongoose.connect("mongodb://localhost/blog")
 
   // Session
   app.use(session({
@@ -40,16 +43,17 @@ const flash = require('connect-flash')
   // Flash
   app.use(flash())
 
-  app.use((req, res, next) => {
-    res.locals.susMsg = req.flash('susMsg')
-    res.locals.errMsg = req.flash('errMsg')
-    res.locals.error  = req.flash('error')
 
-    res.locals.user   = req.user || null
-    
-    next()
-  })
+// Locals
+app.use((req, res, next) => {
+  res.locals.susMsg = req.flash('susMsg')
+  res.locals.errMsg = req.flash('errMsg')
+  res.locals.error  = req.flash('error')
+
+  res.locals.user   = req.user || null
   
+  next()
+})  
   
 // Routes
 const routes = require('./src/routes')
@@ -57,7 +61,7 @@ app.use(routes)
   
 
 // Listen
-const PORT = 4000
+const PORT = process.env.PORT
 app.listen(PORT, () => {
   console.log(`Server running in http://localhost:${PORT}`)
 })
