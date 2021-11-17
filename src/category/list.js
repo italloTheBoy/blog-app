@@ -1,9 +1,13 @@
 const { Router } = require('express')
 const routes = Router()
 
+const { checkAdm } = require('../../helpers/checkAdm')
+
 const Category = require('../../models/Category')
 
-routes.get('/', async (req, res) => {
+
+routes.get('/', checkAdm, async (req, res) => {
+
   try {
     const category = await Category.find().sort({date: 'desc'}).lean()
     res.render('category/list', { category: category })

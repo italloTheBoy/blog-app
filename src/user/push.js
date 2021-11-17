@@ -8,5 +8,8 @@ routes.use(signup)
 const login = require('./login')
 routes.use(login)
 
+const logout = require('./logout')
+routes.use(logout)
+
 
 module.exports = routes

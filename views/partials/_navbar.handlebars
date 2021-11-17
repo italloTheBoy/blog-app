@@ -12,13 +12,19 @@
         <li class="nav-item">
           <a class="nav-link active" href="/post">Post</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link active" href="/login ">Log in</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" href="/signup">Sign up</a>
-        </li>
+        {{#if user}}  
+        {{else}}
+          <li class="nav-item">
+            <a class="nav-link active" href="/login ">Log in</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="/signup">Sign up</a>
+          </li>
+        {{/if}}      
       </ul>
+      {{#if user}}
+         <a class="nav-link text-danger" href="/logout">Logout</a>
+      {{/if}}
     </div>
   </div>
 </nav>

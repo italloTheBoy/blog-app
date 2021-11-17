@@ -44,6 +44,8 @@ const flash = require('connect-flash')
     res.locals.susMsg = req.flash('susMsg')
     res.locals.errMsg = req.flash('errMsg')
     res.locals.error  = req.flash('error')
+
+    res.locals.user   = req.user || null
     
     next()
   })
@@ -55,7 +57,7 @@ app.use(routes)
   
 
 // Listen
-const PORT = 3000
+const PORT = 4000
 app.listen(PORT, () => {
   console.log(`Server running in http://localhost:${PORT}`)
 })

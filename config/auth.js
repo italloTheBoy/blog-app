@@ -5,7 +5,7 @@ const bcrypt   = require('bcrypt')
 const User = require('../models/User')
 
 module.exports = (passport) => {
-  passport.use(new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
+  passport.use(new LocalStrategy({ usernameField: 'email' }, async (email, password, done) => {
 
     User.findOne({ email: email })
       .then((user) => {
@@ -25,9 +25,12 @@ module.exports = (passport) => {
 
         })
       })
+      .catch((err) => {
+        return done(err, false, { message: '500: Erro interno, tente novamente mais tarde'})
+      })
 
       passport.serializeUser((user, done) => {
-        done(null, user.id)
+        done(null, user._id)
       })
 
       passport.deserializeUser((id, done) => {
